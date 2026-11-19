@@ -341,7 +341,7 @@ footer{padding:30px 20px;text-align:center;font-size:.8rem;color:var(--muted)}
 
 <header class="hero" id="big-picture"><div class="in heroGrid">
   <div>
-    <div class="kicker">A community primer · Fiscal year 2026</div>
+    <div class="kicker">A primer · Fiscal year 2026</div>
     <h1>Understanding the National Debt</h1>
     <p class="lede">What Washington takes in, what it spends, who it borrows from, and why it matters to your mortgage, your taxes, and your kids.</p>
     <div class="clock">
@@ -475,7 +475,24 @@ footer{padding:30px 20px;text-align:center;font-size:.8rem;color:var(--muted)}
     <div class="chartbox" style="height:170px"><canvas id="cutChart"></canvas></div>
     <p style="margin-top:8px"><span class="big red">$1.89T &lt; $1.99T</span><br>Cutting the deficit by spending alone would mean cutting all non-interest spending by about <b>32%</b>, across the board.</p>
   </div>
-  <div class="takeaway"><b>Key point:</b> Arithmetic doesn't favor one party. Taxes alone or cuts alone would each have to be historically extreme. Realistic plans combine several levers over many years, and stabilizing the debt (keeping it from growing faster than the economy) takes less than balancing the budget.</div>
+  <div class="card" id="growCard">
+    <h3>What about growing our way out?</h3>
+    <p style="font-size:.95rem;color:var(--ink2)">A bigger economy means bigger paychecks and profits to tax, so faster growth raises revenue. But spending is a moving target. CBO projects outlays rising from <b>$7.4T</b> to <b>$11.4T</b> by 2036 as Social Security, Medicare, and interest costs climb. How fast would the economy have to grow, after inflation, to balance the budget with growth alone?</p>
+    <div class="grid2" style="align-items:center">
+      <div class="chartbox sm"><canvas id="growChart"></canvas></div>
+      <div>
+        <div class="sl"><label>Balance the budget within <span id="v_gy">10 years</span></label><input type="range" id="s_gy" min="3" max="15" value="10"></div>
+        <div class="result" style="margin-top:6px">
+          <div style="font-size:.85rem;color:#c9d3e3">Real growth needed every year</div>
+          <div class="big" id="r_gy">4.3%</div>
+          <div id="r_gym" style="font-size:.92rem;color:#dfe6f1;margin-top:8px"></div>
+        </div>
+      </div>
+    </div>
+    <div class="debate"><b>Both sides of the argument:</b> Growth optimists point to deregulation, the 2025 tax law, and AI-driven productivity. Treasury Secretary Bessent has said that "with 3% growth, we grow our way out of this." Skeptics, including CBO Director Swagel, say growth will help but likely can't stabilize the debt alone, partly because a stronger economy also raises spending: Social Security benefits, for example, rise with wages. Many economists on both sides agree that pro-growth policies can <i>shrink</i> the tax increases and spending cuts that are needed, even if they can't replace them.</div>
+    <p class="note">Method: FY2026 revenue ($5.40T) and spending ($7.40T) as the starting point. Spending follows CBO's February 2026 projection (about 4.4% a year), and inflation runs about 2.1%. Revenue rises 1.2% for every 1% of nominal economic growth, since growing incomes push people into higher brackets. The method assumes faster growth adds no extra spending, which flatters the growth option. Decade averages are approximate, from BEA data.</p>
+  </div>
+  <div class="takeaway"><b>Key point:</b> Arithmetic doesn't favor one party. Taxes alone, cuts alone, or growth alone would each have to be historically extreme. Realistic plans combine several levers over many years, and stabilizing the debt (keeping it from growing faster than the economy) takes less than balancing the budget.</div>
   <p class="note">Sources: BEA personal income (≈$27.0T annual rate, mid-2026) and corporate profits before tax ($4.57T annual rate, Q2 2026); CBO FY2026 receipts and outlays.</p>
 </div></section>
 
@@ -491,6 +508,8 @@ footer{padding:30px 20px;text-align:center;font-size:.8rem;color:var(--muted)}
       <div class="sl"><label>Increase payroll tax collections by <span id="v_pay">0%</span></label><input type="range" id="s_pay" min="0" max="50" value="0"><small class="xl" id="x_pay">$1,812B today (Social Security + Medicare taxes)</small></div>
       <div class="sl"><label>Increase corporate tax collections by <span id="v_corp">0%</span></label><input type="range" id="s_corp" min="0" max="300" value="0" step="5"><small class="xl" id="x_corp">$381B today</small></div>
       <div class="sl"><label>Increase tariffs and other revenue by <span id="v_oth">0%</span></label><input type="range" id="s_oth" min="0" max="200" value="0" step="5"><small class="xl" id="x_oth">$364B today</small></div>
+      <div class="grp">Economy</div>
+      <div class="sl"><label>Real economic growth, next 10 years <span id="v_grow">1.8%/yr</span></label><input type="range" id="s_grow" min="0" max="30" value="0"><small class="xl" id="x_grow">CBO projects 1.8% a year.</small></div>
       <div class="grp">Spending</div>
       <div class="sl"><label>Cut Social Security <span id="v_ss">0%</span></label><input type="range" id="s_ss" min="0" max="40" value="0"><small class="xl" id="x_ss">$1,654B today</small></div>
       <div class="sl"><label>Cut Medicare and Medicaid <span id="v_hc">0%</span></label><input type="range" id="s_hc" min="0" max="40" value="0"><small class="xl" id="x_hc">$1,792B today</small></div>
@@ -508,6 +527,7 @@ footer{padding:30px 20px;text-align:center;font-size:.8rem;color:var(--muted)}
         <table style="width:100%;font-size:.9rem;color:#dfe6f1">
           <tr><td>New revenue raised</td><td style="text-align:right" id="r_rev">$0B</td></tr>
           <tr><td>Spending cut</td><td style="text-align:right" id="r_cut">$0B</td></tr>
+          <tr><td>Faster growth</td><td style="text-align:right" id="r_grow">$0B</td></tr>
           <tr><td>Revenue as % of GDP</td><td style="text-align:right" id="r_revg">16.7%</td></tr>
           <tr><td>Spending as % of GDP</td><td style="text-align:right" id="r_spg">22.9%</td></tr>
         </table>
@@ -642,6 +662,9 @@ footer{padding:30px 20px;text-align:center;font-size:.8rem;color:var(--muted)}
       <li><a href="https://www.ssa.gov/oact/tr/2026/II_A_highlights.html">2026 Social Security Trustees Report: Highlights</a></li>
       <li><a href="https://www.everycrsreport.com/files/2026-07-27_R43122_c62bed3a53adb4ca573ed677d0f189256fc884bb.html">CRS: Medicare's Financial Status (2026 Trustees)</a></li>
       <li><a href="https://fiscal.treasury.gov/accounting/us-financial-report/results-in-brief">Treasury: Financial Report of the U.S. Government, results in brief</a></li>
+      <li><a href="https://www.cbo.gov/publication/62207">CBO: Testimony on the Budget and Economic Outlook, 2026 to 2036</a></li>
+      <li><a href="https://www.crfb.org/blogs/dont-count-growth-fix-debt">CRFB: Don't Count on Growth to Fix the Debt</a></li>
+      <li><a href="https://fortune.com/2026/10/10/us-debt-gdp-growth-cbo-scott-bessent-deficit-bond-yields-interest-rates/">Fortune: CBO chief on growth and the debt (Oct 2026)</a></li>
       <li><a href="https://www.gao.gov/products/gao-26-108610">GAO: The Nation's Fiscal Health (2026)</a></li>
     </ul></div>
   </div>
@@ -803,6 +826,18 @@ document.querySelectorAll('#iceMode button').forEach(b=>b.onclick=()=>{document.
 (function(){const ov=document.getElementById('iceOverlay');const o=()=>{ov.classList.add('open');document.body.style.overflow='hidden';tick()};const c=()=>{ov.classList.remove('open');document.body.style.overflow=''};document.getElementById('iceOpen').onclick=o;document.getElementById('iceClose').onclick=c;ov.onclick=e=>{if(e.target===ov)c()};addEventListener('keydown',e=>{if(e.key==='Escape')c()})})();
 
 })();
+
+/* growth */
+(function(){const need=N=>(((Math.pow(7396/5403,1/N)*1.0442-1)/1.2+1)/1.021-1)*100;
+ const H=[3,5,10];const refs=[[1.8,'CBO projection: 1.8%','#52514e'],[3.2,'1990s average: ~3.2%','#1baf7a'],[4.5,'1960s average: ~4.5%','#2a78d6']];
+ const refPlug={id:'growRefs',afterDatasetsDraw(ch){const {ctx,chartArea:a,scales:{y}}=ch;ctx.save();refs.forEach(([v,l,c])=>{const py=y.getPixelForValue(v);ctx.strokeStyle=c;ctx.setLineDash([5,4]);ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(a.left,py);ctx.lineTo(a.right,py);ctx.stroke();ctx.setLineDash([]);ctx.font='600 11px Inter';ctx.fillStyle=c;const parts=l.split(': ');ctx.fillText(parts[0],a.right+8,py-2);ctx.font='700 12px Inter';ctx.fillText(parts[1],a.right+8,py+12)});ctx.restore()},
+  afterDraw(ch){const {ctx}=ch;ctx.save();ctx.font='700 13px Inter';ctx.fillStyle='#0b0b0b';ch.getDatasetMeta(0).data.forEach((b,i)=>{const t=need(H[i]).toFixed(1)+'%';const w=ctx.measureText(t).width;ctx.fillText(t,b.x-w/2,b.y-6)});ctx.restore()}};
+ new Chart(document.getElementById('growChart'),{type:'bar',plugins:[refPlug],data:{labels:H.map(h=>'Within '+h+' years'),datasets:[{data:H.map(need),backgroundColor:'#e34948',borderRadius:4,borderSkipped:'start',maxBarThickness:70}]},
+  options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:16,right:118}},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw.toFixed(1)}% real growth every year`}}},scales:{x:{grid:{display:false}},y:{min:0,max:12,grid:{color:C.rule},border:{display:false},ticks:{callback:v=>v+'%'},title:{display:true,text:'Real GDP growth needed per year'}}}}});
+ const sl=document.getElementById('s_gy');function u(){const N=+sl.value,g=need(N);document.getElementById('v_gy').textContent=N+' years';document.getElementById('r_gy').textContent=g.toFixed(1)+'%';
+  document.getElementById('r_gym').innerHTML=`That's <b>${(g/1.8).toFixed(1)}×</b> CBO's projection, every year for ${N} years. `+(g>=4.5?'The U.S. hasn\'t averaged that for a full decade since the 1960s.':g>=3.2?'That beats every decade average since the 1960s.':'That\'s within the range of past decades, but only if spending growth doesn\'t speed up after 2036, and it does.')}
+ sl.oninput=u;u()})();
+
 /* 2. interest */
 const barOpts=(extra={})=>Object.assign({responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},border:{display:false}}}},extra);
 new Chart(document.getElementById('intChart'),{type:'bar',data:{labels:['Social Security','Net interest','Medicare','Defense','Medicaid'],datasets:[{data:[1654,1142,1069,917,723],backgroundColor:[C.muted,C.s8,C.muted,C.muted,C.muted],borderRadius:4,borderSkipped:'start',maxBarThickness:56}]},
@@ -816,7 +851,12 @@ new Chart(document.getElementById('cutChart'),{type:'bar',data:{labels:['Deficit
 
 /* 4. calculator */
 const GDP=32350;const ids=['ind','pay','corp','oth','ss','hc','def','else'];const base={ind:2846,pay:1812,corp:381,oth:364,ss:1654,hc:1792,def:917,else:1891};
-function calc(){const v={};ids.forEach(k=>{v[k]=+document.getElementById('s_'+k).value;document.getElementById('v_'+k).textContent=(k.length&&['ss','hc','def','else'].includes(k)?'−':'+')+v[k]+'%'});
+function calc(){const gx=+document.getElementById('s_grow').value/10;const gf=Math.pow(1+gx/100,10);
+ const gRevPct=17.8*(Math.pow(gf,0.2)-1), gSpPct=24.4*(1-1/gf); const def36=(24.4-gSpPct)-(17.8+gRevPct); const growB=gx>0?Math.max(0,(1992/GDP*100-def36))/100*GDP:0; const grevB=0, gspB=growB;
+ document.getElementById('v_grow').textContent=(1.8+gx).toFixed(1)+'%/yr';
+ const dec=t=>t>=3.5?'faster than any decade since the 1960s':t>=3.0?'about the pace of the 1990s':t>=2.3?'about the pace of the 2010s':'';
+ document.getElementById('x_grow').innerHTML=gx===0?'CBO projects 1.8% a year. Slide right to assume faster growth.':`By 2036 the economy is <b>${((gf-1)*100).toFixed(0)}%</b> bigger than CBO projects. Revenue rises to <b>${(17.8+gRevPct).toFixed(1)}%</b> of GDP and spending falls to <b>${(24.4-gSpPct).toFixed(1)}%</b> (vs. 17.8% and 24.4% projected), ${growB>0?`Deficit shrinks to <b>${def36.toFixed(1)}%</b> of GDP, worth about <b>${fmt(growB)}</b> a year in today's dollars.`:'Not yet enough to offset the deficit growth CBO already projects.'} ${(1.8+gx).toFixed(1)}% for a decade is ${dec(1.8+gx)}.`;
+ const v={};ids.forEach(k=>{v[k]=+document.getElementById('s_'+k).value;document.getElementById('v_'+k).textContent=(k.length&&['ss','hc','def','else'].includes(k)?'−':'+')+v[k]+'%'});
 
  const X={ind:p=>`$2,846B today. <b>+${fmt(2846*p/100)}</b>: a $10,000 tax bill becomes <b>$${Math.round(10000*(1+p/100)).toLocaleString()}</b>; average income tax rate 14.1% → <b>${(14.1*(1+p/100)).toFixed(1)}%</b>`,
   pay:p=>`$1,812B today. <b>+${fmt(1812*p/100)}</b>: like raising the 15.3% combined payroll tax rate to <b>${(15.3*(1+p/100)).toFixed(1)}%</b> (split between worker and employer)`,
@@ -827,15 +867,15 @@ function calc(){const v={};ids.forEach(k=>{v[k]=+document.getElementById('s_'+k)
   def:p=>`$917B today. <b>−${fmt(917*p/100)}</b>`,
   else:p=>`$1,891B today (veterans, food aid, transportation, etc.). <b>−${fmt(1891*p/100)}</b>`};
  ids.forEach(k=>{document.getElementById('x_'+k).innerHTML=X[k](v[k])});
- const rev=['ind','pay','corp','oth'].reduce((s,k)=>s+base[k]*v[k]/100,0);const cut=['ss','hc','def','else'].reduce((s,k)=>s+base[k]*v[k]/100,0);
- const rem=1992-rev-cut;document.getElementById('r_def').textContent=rem<=0?'Surplus '+fmt(-rem):fmt(rem);
- document.getElementById('r_bar').style.width=Math.max(0,rem/1992*100)+'%';
- document.getElementById('r_rev').textContent=fmt(rev);document.getElementById('r_cut').textContent=fmt(cut);
- document.getElementById('r_revg').textContent=((5403+rev)/GDP*100).toFixed(1)+'%';document.getElementById('r_spg').textContent=((7396-cut)/GDP*100).toFixed(1)+'%';
+ const rev=['ind','pay','corp','oth'].reduce((s,k)=>s+base[k]*v[k]/100,0)+grevB;const cut=['ss','hc','def','else'].reduce((s,k)=>s+base[k]*v[k]/100,0);
+ const rem=1992-rev-cut-gspB;document.getElementById('r_def').textContent=rem<=0?'Surplus '+fmt(-rem):fmt(rem);
+ document.getElementById('r_bar').style.width=Math.max(0,Math.min(100,rem/1992*100))+'%';
+ document.getElementById('r_rev').textContent=fmt(rev-grevB);document.getElementById('r_cut').textContent=fmt(cut);
+ const yr=gx>0?' (2036)':'';document.getElementById('r_revg').textContent=((gx>0?17.8+gRevPct:16.7)+rev/GDP*100).toFixed(1)+'%'+yr;document.getElementById('r_spg').textContent=((gx>0?24.4-gSpPct:22.9)-cut/GDP*100).toFixed(1)+'%'+yr;document.getElementById('r_grow').textContent=fmt(growB);
 
- document.getElementById('r_msg').innerHTML=rem<=0?'<b>Balanced!</b> Now ask: could this pass Congress, and could families and businesses absorb it?':(rem<=1300?`<b>Debt has stopped growing faster than the economy.</b> Any deficit below about $1.3T (about 4% of GDP) holds debt roughly steady as a share of GDP, assuming ~4% nominal growth. Remaining gap to balance: ${fmt(rem)}.`:`${Math.round((1-rem/1992)*100)}% of the gap closed.`)}
-ids.forEach(k=>document.getElementById('s_'+k).addEventListener('input',calc));
-document.getElementById('reset').onclick=()=>{ids.forEach(k=>document.getElementById('s_'+k).value=0);calc()};calc();
+ document.getElementById('r_msg').innerHTML=rem<=0?'<b>Balanced!</b> Now ask: could this pass Congress, and could families and businesses absorb it?':(rem<=1300?`<b>Debt has stopped growing faster than the economy.</b> Any deficit below about $1.3T (about 4% of GDP) holds debt roughly steady as a share of GDP, assuming ~4% nominal growth. Remaining gap to balance: ${fmt(rem)}.`:`${Math.round((1-rem/1992)*100)}% of the gap closed.${gx>0?' Note: the growth slider is measured against CBO\'s 2036 budget, the others against today\'s.':''}`)}
+ids.forEach(k=>document.getElementById('s_'+k).addEventListener('input',calc));document.getElementById('s_grow').addEventListener('input',calc);
+document.getElementById('reset').onclick=()=>{document.getElementById('s_grow').value=0;ids.forEach(k=>document.getElementById('s_'+k).value=0);calc()};calc();
 
 /* 5. history */
 const pctG=[[1940,43.6],[1941,41.5],[1942,45.9],[1943,69.2],[1944,86.4],[1945,103.9],[1946,106.1],[1947,93.9],[1948,82.4],[1950,78.5],[1955,55.7],[1960,44.3],[1965,36.7],[1970,27.0],[1974,23.2],[1975,24.5],[1980,25.5],[1985,35.3],[1990,40.8],[1993,47.9],[1995,47.7],[2000,33.7],[2001,31.5],[2005,35.6],[2007,35.2],[2008,39.2],[2009,52.2],[2010,60.6],[2011,65.5],[2012,70.0],[2013,71.9],[2014,73.3],[2015,72.2],[2016,75.6],[2017,75.7],[2018,77.1],[2019,79.2],[2020,99.6],[2021,97.0],[2022,94.7],[2023,96.0],[2024,97.8],[2025,99.0],[2026,100.0]];
